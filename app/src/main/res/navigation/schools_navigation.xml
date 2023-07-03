@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/schoolsragment"
-        android:name="com.vcco.a20230704_vcco_nycschools.ui.schools.Schoolsragment"
+        android:name="com.vcco.a20230704_vcco_nycschools.ui.schools.SchoolFragment"
         android:label="fragment_schoolsragment"
-        tools:layout="@layout/fragment_schoolsragment" >
+        tools:layout="@layout/fragment_schools" >
         <action
             android:id="@+id/action_schoolsragment_to_schoolDetailFragment"
             app:destination="@id/schoolDetailFragment" />

@@ -1,4 +1,4 @@
-package com.vcco.a20230704_vcco_nycschools.ui.schooldetail
+package com.vcco.a20230704_vcco_nycschools.ui.schools
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -8,15 +8,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.vcco.a20230704_vcco_nycschools.R
+import dagger.hilt.android.AndroidEntryPoint
 
-class SchoolDetailFragment : Fragment() {
+@AndroidEntryPoint
+class SchoolFragment : Fragment() {
 
-    private val viewModel: SchoolDetailViewModel by viewModels()
+    private val viewModel: SchoolViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_school_detail, container, false)
+        return inflater.inflate(R.layout.fragment_schools, container, false)
     }
+
 }
