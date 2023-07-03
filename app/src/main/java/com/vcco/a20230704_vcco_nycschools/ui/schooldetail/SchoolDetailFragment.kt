@@ -6,15 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import com.vcco.a20230704_vcco_nycschools.R
 
 class SchoolDetailFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = SchoolDetailFragment()
-    }
-
-    private lateinit var viewModel: SchoolDetailViewModel
+    private val viewModel: SchoolDetailViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,11 +19,4 @@ class SchoolDetailFragment : Fragment() {
     ): View? {
         return inflater.inflate(R.layout.fragment_school_detail, container, false)
     }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(SchoolDetailViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
-
 }
