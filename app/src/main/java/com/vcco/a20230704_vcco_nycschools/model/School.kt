@@ -6,6 +6,7 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import com.vcco.a20230704_vcco_nycschools.utils.database.DatabaseConstants
 import com.vcco.a20230704_vcco_nycschools.utils.database.NetworkConstants
+import java.lang.annotation.ElementType
 
 @Entity(tableName = DatabaseConstants.schoolTable)
 data class School(
@@ -36,10 +37,10 @@ data class School(
     val phoneNumber: String?,
     @SerializedName(NetworkConstants.faxNumberResponse)
     @ColumnInfo(name = DatabaseConstants.faxNumberColumn)
-    val faxNumber: String,
+    val faxNumber: String?,
     @SerializedName(NetworkConstants.schoolEmailResponse)
     @ColumnInfo(name = DatabaseConstants.schoolEmailColumn)
-    val schoolEmail: String,
+    val schoolEmail: String?,
     @SerializedName(NetworkConstants.websiteResponse)
     @ColumnInfo(name = DatabaseConstants.websiteColumn)
     val webSite: String?,

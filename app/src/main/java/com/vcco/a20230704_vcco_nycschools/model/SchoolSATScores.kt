@@ -19,11 +19,11 @@ data class SchoolSATScores(
     val schoolName: String,
     @SerializedName(NetworkConstants.satCriticalReadingAvgScoreResponse)
     @ColumnInfo(name = DatabaseConstants.satCriticalReadingAvgScoreColumn)
-    val criticalReadingAvgScore: Int,
+    val criticalReadingAvgScore: String,
     @SerializedName(NetworkConstants.satMathAvgScoreResponse)
     @ColumnInfo(name = DatabaseConstants.satMathAvgScoreColumn)
-    val mathAvgScore: Int,
+    val mathAvgScore: String,
     @SerializedName(NetworkConstants.satWritingAvgScoreResponse)
     @ColumnInfo(name = DatabaseConstants.satWritingAvgScoreColumn)
-    val writingAvgScore: Int
+    val writingAvgScore: String
 )
