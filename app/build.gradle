@@ -15,7 +15,8 @@ android {
         targetSdk 33
         versionCode 1
         versionName "1.0"
-
+        multiDexEnabled true
+        buildConfigField 'String', 'BASE_URL', "\"https://data.cityofnewyork.us/resource/\""
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -29,6 +30,7 @@ android {
     // Enables data binding.
     buildFeatures {
         dataBinding true
+        buildConfig true
     }
 
     compileOptions {
@@ -70,6 +72,17 @@ dependencies {
     implementation "androidx.room:room-ktx:2.4.3"
     kapt "androidx.room:room-compiler:2.4.3"
     androidTestImplementation "androidx.room:room-testing:2.4.3"
+
+    //OkHttp
+    implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.2'
+    implementation('com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2')
+
+    //Retrofit and GSON
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+
 
     //JUnit
     testImplementation 'junit:junit:4.13.2'

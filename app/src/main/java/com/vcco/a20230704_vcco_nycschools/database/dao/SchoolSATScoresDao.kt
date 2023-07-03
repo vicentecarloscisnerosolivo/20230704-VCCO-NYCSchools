@@ -3,7 +3,7 @@ package com.vcco.a20230704_vcco_nycschools.database.dao
 import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Transaction
-import com.vcco.a20230704_vcco_nycschools.database.model.SchoolSATScores
+import com.vcco.a20230704_vcco_nycschools.model.SchoolSATScores
 
 @Dao
 interface SchoolSATScoresDao: DAO<SchoolSATScores> {
