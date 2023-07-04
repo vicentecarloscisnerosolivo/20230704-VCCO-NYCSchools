@@ -7,7 +7,9 @@ import com.google.gson.annotations.SerializedName
 import com.vcco.a20230704_vcco_nycschools.utils.database.DatabaseConstants
 import com.vcco.a20230704_vcco_nycschools.utils.database.NetworkConstants
 
-//Create School Model, using same object for database and Network Call
+/**
+ * Create School Sat Model, using same object for database and Network Call
+ */
 @Entity(tableName = DatabaseConstants.schoolSAtScoresTable)
 data class SchoolSATScores(
     @SerializedName(NetworkConstants.dbnResponse)
@@ -17,6 +19,9 @@ data class SchoolSATScores(
     @SerializedName(NetworkConstants.schoolNameResponse)
     @ColumnInfo(name = DatabaseConstants.schoolNameColumn)
     val schoolName: String,
+    @SerializedName(NetworkConstants.numOfSatTestTakersResponse)
+    @ColumnInfo(name = DatabaseConstants.numOfSatTestTakersColumn)
+    val numOfSatTestTakers: String,
     @SerializedName(NetworkConstants.satCriticalReadingAvgScoreResponse)
     @ColumnInfo(name = DatabaseConstants.satCriticalReadingAvgScoreColumn)
     val criticalReadingAvgScore: String,

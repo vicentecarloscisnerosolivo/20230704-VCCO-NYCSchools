@@ -9,6 +9,7 @@ class DatabaseConstants {
 
         //Table SchoolSATScores
         const val schoolSAtScoresTable = "TSchoolSAtScores"
+        const val numOfSatTestTakersColumn = "num_of_sat_test_takers"
         const val satCriticalReadingAvgScoreColumn = "sat_critical_reading_avg_score"
         const val satMathAvgScoreColumn = "sat_math_avg_score"
         const val satWritingAvgScoreColumn = "sat_writing_avg_score"

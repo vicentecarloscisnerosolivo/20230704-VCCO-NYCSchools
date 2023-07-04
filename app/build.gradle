@@ -3,6 +3,8 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'com.google.dagger.hilt.android'
+    id "org.jlleitschuh.gradle.ktlint-idea" version "11.4.2"
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
@@ -15,8 +17,6 @@ android {
         targetSdk 33
         versionCode 1
         versionName "1.0"
-        multiDexEnabled true
-        buildConfigField 'String', 'BASE_URL', "\"https://data.cityofnewyork.us/resource/\""
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -24,6 +24,13 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField 'String', 'BASE_URL', "\"https://data.cityofnewyork.us/resource/\""
+        }
+        qa {
+            buildConfigField 'String', 'BASE_URL', "\"https://data.cityofnewyork.us/resource/\""
+        }
+        debug {
+            buildConfigField 'String', 'BASE_URL', "\"https://data.cityofnewyork.us/resource/\""
         }
     }
 
@@ -60,8 +67,6 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.6.0'
     implementation 'androidx.navigation:navigation-ui-ktx:2.6.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.1'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
 
     //Hilt
     implementation "com.google.dagger:hilt-android:2.44"
@@ -89,7 +94,10 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-reactivestreams:2.2.0"
     implementation "androidx.multidex:multidex:2.0.1"
 
-
+    //Paging
+    implementation 'androidx.paging:paging-runtime:3.1.1' // For Kotlin use paging-runtime-ktx
+    // alternatively - without Android dependencies for testing
+    testImplementation 'androidx.paging:paging-common:3.1.1' // For Kotlin use paging-common-ktx
 
     //JUnit
     testImplementation 'junit:junit:4.13.2'
@@ -102,4 +110,8 @@ dependencies {
 // Allow references to generated code
 kapt {
     correctErrorTypes true
+}
+ktlint {
+    android = true
+    outputColorName = "RED"
 }

@@ -11,6 +11,7 @@ class NetworkConstants {
         const val schoolNameResponse = "school_name"
 
         //SchoolSATScoresResponse
+        const val numOfSatTestTakersResponse = "num_of_sat_test_takers"
         const val satCriticalReadingAvgScoreResponse = "sat_critical_reading_avg_score"
         const val satMathAvgScoreResponse = "sat_math_avg_score"
         const val satWritingAvgScoreResponse = "sat_writing_avg_score"
