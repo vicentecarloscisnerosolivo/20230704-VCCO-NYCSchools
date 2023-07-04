@@ -1,13 +1,278 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.schooldetail.SchoolDetailFragment">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
+    <data>
+
+        <variable
+            name="schoolDetail"
+            type="com.vcco.a20230704_vcco_nycschools.model.School" />
+
+        <variable
+            name="schoolScore"
+            type="com.vcco.a20230704_vcco_nycschools.model.SchoolSATScores" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello" />
+        tools:context=".ui.schooldetail.SchoolDetailFragment">
 
-</FrameLayout>
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ProgressBar
+                    android:id="@+id/pogressBarSchoolDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="?android:attr/progressBarStyle"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+                <TextView
+                    android:id="@+id/schoolName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{schoolDetail.schoolName}"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/tittle_text_size"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="@string/school_name" />
+
+                <TextView
+                    android:id="@+id/schoolOverview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_16dp"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    android:maxLines="5"
+                    android:text="@{schoolDetail.overview}"
+                    android:textSize="@dimen/regular_text_size"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/schoolName"
+                    tools:text="@string/lorem_ipsum" />
+
+                <TextView
+                    android:id="@+id/scoresTittle"
+                    style="@style/headerTextStyle"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    android:text="@string/sat_score_header"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/schoolOverview" />
+
+                <TextView
+                    android:id="@+id/readingAVGText"
+                    style="@style/RegularTextStyle"
+                    android:layout_margin="@dimen/margin_16dp"
+                    android:text="@string/reading_avg_score"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/scoresTittle" />
+
+                <TextView
+                    android:id="@+id/readingAVGT"
+                    style="@style/RegularTextStyle"
+                    android:layout_marginStart="@dimen/margin_16dp"
+                    android:text="@{schoolScore.criticalReadingAvgScore}"
+                    app:layout_constraintStart_toEndOf="@id/readingAVGText"
+                    app:layout_constraintTop_toTopOf="@id/readingAVGText"
+                    tools:text="@string/avg_score" />
+
+                <TextView
+                    android:id="@+id/mathAVGText"
+                    style="@style/RegularTextStyle"
+                    android:layout_margin="@dimen/margin_16dp"
+                    android:text="@string/math_avg_score"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/readingAVGText" />
+
+                <TextView
+                    android:id="@+id/mathAVGT"
+                    style="@style/RegularTextStyle"
+                    android:layout_marginStart="@dimen/margin_16dp"
+                    android:text="@{schoolScore.mathAvgScore}"
+                    app:layout_constraintStart_toEndOf="@id/mathAVGText"
+                    app:layout_constraintTop_toTopOf="@id/mathAVGText"
+                    tools:text="@string/avg_score" />
+
+                <TextView
+                    android:id="@+id/writingAVGText"
+                    style="@style/RegularTextStyle"
+                    android:layout_margin="@dimen/margin_16dp"
+                    android:text="@string/writing_avg_score"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/mathAVGT" />
+
+                <TextView
+                    android:id="@+id/writingAVGT"
+                    style="@style/RegularTextStyle"
+                    android:layout_marginStart="@dimen/margin_16dp"
+                    android:text="@{schoolScore.writingAvgScore}"
+                    app:layout_constraintStart_toEndOf="@id/writingAVGText"
+                    app:layout_constraintTop_toTopOf="@id/writingAVGText"
+                    tools:text="@string/avg_score" />
+
+                <TextView
+                    android:id="@+id/satTestTakersText"
+                    style="@style/RegularTextStyle"
+                    android:layout_margin="@dimen/margin_16dp"
+                    android:text="@string/num_of_sat_test_takers"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/writingAVGText" />
+
+                <TextView
+                    android:id="@+id/satTestTakers"
+                    style="@style/RegularTextStyle"
+                    android:layout_marginStart="@dimen/margin_16dp"
+                    android:text="@{schoolScore.numOfSatTestTakers}"
+                    app:layout_constraintStart_toEndOf="@id/satTestTakersText"
+                    app:layout_constraintTop_toTopOf="@id/satTestTakersText"
+                    tools:text="@string/avg_score" />
+
+                <TextView
+                    android:id="@+id/locationTittle"
+                    style="@style/headerTextStyle"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    android:text="@string/location_header"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/satTestTakersText" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/locationIcon"
+                    android:layout_width="@dimen/size_32"
+                    android:layout_height="@dimen/size_32"
+                    android:layout_margin="@dimen/margin_16dp"
+                    android:src="@drawable/ic_location"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/locationTittle" />
+
+
+                <TextView
+                    android:id="@+id/locationDescription"
+                    style="@style/RegularTextStyle"
+                    android:layout_marginStart="@dimen/margin_16dp"
+                    android:text="@{schoolDetail.location}"
+                    app:layout_constraintBottom_toBottomOf="@id/locationIcon"
+                    app:layout_constraintStart_toEndOf="@id/locationIcon"
+                    app:layout_constraintTop_toTopOf="@id/locationIcon"
+                    tools:text="@string/location_text" />
+
+                <include
+                    android:id="@+id/mapView"
+                    layout="@layout/maps_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/map_size"
+                    android:layout_margin="@dimen/margin_16dp"
+                    android:visibility="@{(schoolDetail.latitude == null || schoolDetail.longitude == null)  ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/locationDescription" />
+
+                <TextView
+                    android:id="@+id/infoTittle"
+                    style="@style/headerTextStyle"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    android:text="@string/contact_info_header"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/mapView" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/phoneIcon"
+                    android:layout_width="@dimen/size_32"
+                    android:layout_height="@dimen/size_32"
+                    android:layout_margin="@dimen/margin_16dp"
+                    android:src="@drawable/ic_phone"
+                    android:visibility="@{schoolDetail.phoneNumber  == null ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintStart_toStartOf="@id/satTestTakersText"
+                    app:layout_constraintTop_toBottomOf="@id/infoTittle" />
+
+
+                <TextView
+                    android:id="@+id/phoneNumber"
+                    style="@style/RegularTextStyle"
+                    android:layout_marginStart="@dimen/margin_16dp"
+                    android:text="@{schoolDetail.phoneNumber}"
+                    android:visibility="@{schoolDetail.phoneNumber  == null ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintBottom_toBottomOf="@id/phoneIcon"
+                    app:layout_constraintStart_toEndOf="@id/phoneIcon"
+                    app:layout_constraintTop_toTopOf="@id/phoneIcon"
+                    tools:text="@string/school_number" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/faxIcon"
+                    android:layout_width="@dimen/size_32"
+                    android:layout_height="@dimen/size_32"
+                    android:src="@drawable/ic_fax"
+                    android:visibility="@{schoolDetail.faxNumber  == null ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintStart_toStartOf="@id/phoneIcon"
+                    app:layout_constraintTop_toBottomOf="@id/phoneIcon" />
+
+                <TextView
+                    android:id="@+id/faxNumber"
+                    style="@style/RegularTextStyle"
+                    android:layout_marginStart="@dimen/margin_16dp"
+                    android:text="@{schoolDetail.faxNumber}"
+                    android:visibility="@{schoolDetail.faxNumber  == null ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintBottom_toBottomOf="@id/faxIcon"
+                    app:layout_constraintStart_toEndOf="@id/faxIcon"
+                    app:layout_constraintTop_toTopOf="@id/faxIcon"
+                    tools:text="@string/school_number" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/emailIcon"
+                    android:layout_width="@dimen/size_32"
+                    android:layout_height="@dimen/size_32"
+                    android:src="@drawable/ic_email"
+                    android:visibility="@{schoolDetail.schoolEmail  == null ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintStart_toStartOf="@id/faxIcon"
+                    app:layout_constraintTop_toBottomOf="@id/faxIcon" />
+
+                <TextView
+                    android:id="@+id/emailAddress"
+                    style="@style/RegularTextStyle"
+                    android:layout_marginStart="@dimen/margin_16dp"
+                    android:text="@{schoolDetail.schoolEmail}"
+                    android:visibility="@{schoolDetail.schoolEmail  == null ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintBottom_toBottomOf="@id/emailIcon"
+                    app:layout_constraintStart_toEndOf="@id/emailIcon"
+                    app:layout_constraintTop_toTopOf="@id/emailIcon"
+                    tools:text="@string/school_email" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/webPageIcon"
+                    android:layout_width="@dimen/size_32"
+                    android:layout_height="@dimen/size_32"
+                    android:src="@drawable/ic_web_page"
+                    android:visibility="@{schoolDetail.webSite  == null ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintStart_toStartOf="@id/emailIcon"
+                    app:layout_constraintTop_toBottomOf="@id/emailIcon" />
+
+                <TextView
+                    android:id="@+id/webPage"
+                    style="@style/RegularTextStyle"
+                    android:layout_marginStart="@dimen/margin_16dp"
+                    android:text="@{schoolDetail.webSite}"
+                    android:visibility="@{schoolDetail.webSite  == null ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintBottom_toBottomOf="@id/webPageIcon"
+                    app:layout_constraintStart_toEndOf="@id/webPageIcon"
+                    app:layout_constraintTop_toTopOf="@id/webPageIcon"
+                    tools:text="@string/school_web_page" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+</layout>

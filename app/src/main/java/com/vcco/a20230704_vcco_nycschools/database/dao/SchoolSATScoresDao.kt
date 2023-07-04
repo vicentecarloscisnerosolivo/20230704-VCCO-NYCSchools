@@ -75,7 +75,6 @@ interface SchoolSATScoresDao : DAO<SchoolSATScores> {
     suspend fun updateSchoolScores(schoolScores: List<SchoolSATScores>) {
         deleteSchoolScores()
         insert(schoolScores)
-        deleteSchoolIfNotHaveScore()
     }
 
     /**

@@ -16,12 +16,22 @@ import javax.inject.Inject
 @HiltViewModel
 class SchoolViewModel @Inject constructor(private val repository: NYCSchoolsRepository) :
     ViewModel() {
-    private val _schoolsList = MutableLiveData<List<School>?>()
-
+    //schools
     /**
      * LiveData for List of the Schools Listed in the NYC Open Data
      */
-    val schoolsList: LiveData<List<School>?> = _schoolsList
+    val schoolsList: LiveData<List<School>?> = repository.schoolList
+
+    //network Error
+    val errorMessage: LiveData<String> = repository.errorMessage
+    //navigation
+
+    private val _navigationToSchoolDetail = MutableLiveData<String?>()
+
+    /**
+     * LiveData for clickListener, Listen when user click a school and navigate to next screen
+     */
+    val navigationToSchoolDetail = _navigationToSchoolDetail
 
     /**
      * Get List of the schools listed in the NYC Open Data and store in schoolList LiveData
@@ -30,7 +40,22 @@ class SchoolViewModel @Inject constructor(private val repository: NYCSchoolsRepo
         //launch the coroutine for the suspend fun
         viewModelScope.launch {
             //Use postValue to avoid problem in the UI Thread
-            _schoolsList.postValue(repository.getSchools())
+            repository.getSchools()
         }
     }
+
+    /**
+     * Set Id from click school to Navigate to School detail
+     */
+    fun onSchoolClicked(id: String) {
+        _navigationToSchoolDetail.postValue(id)
+    }
+
+    /**
+     * Reset id from clickedSchool
+     */
+    fun onSchoolDetailNavigated() {
+        _navigationToSchoolDetail.value = null
+    }
+
 }

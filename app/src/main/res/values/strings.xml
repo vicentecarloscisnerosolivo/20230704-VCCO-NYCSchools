@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">NYCSchools</string>
+    <string name="fragment_schools_tittle">Schools</string>
+    <string name="fragment_school_detail_tittle">School Detail</string>
+    <string name="retry_fetch_data">Retry Fetch Data</string>
+    <string name="school_name">Columbia University</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+    <string name="sat_score_header">SAT Scores</string>
+    <string name="reading_avg_score">SAT Critical Reading Average Score:</string>
+    <string name="math_avg_score">SAT Critical Math Average Score:</string>
+    <string name="writing_avg_score">SAT Critical Writing Average Score:</string>
+    <string name="num_of_sat_test_takers">Number of SAT Test Takers:</string>
+    <string name="location_header">Location</string>
+    <string name="location_text">165-65 84th Avenue, Jamaica NY 11432 (40.716071, -73.799692)</string>
+    <string name="contact_info_header">Contact Info</string>
+    <string name="avg_score">450</string>
+    <string name="school_number">(123)-551-4567</string>
+    <string name="school_email">school@example.com</string>
+    <string name="school_web_page">www.school.com</string>
 </resources>

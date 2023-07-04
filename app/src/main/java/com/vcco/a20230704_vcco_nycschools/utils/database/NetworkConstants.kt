@@ -11,6 +11,7 @@ class NetworkConstants {
         const val schoolNameResponse = "school_name"
 
         //SchoolSATScoresResponse
+        const val numOfSatTestTakersResponse = "num_of_sat_test_takers"
         const val satCriticalReadingAvgScoreResponse = "sat_critical_reading_avg_score"
         const val satMathAvgScoreResponse = "sat_math_avg_score"
         const val satWritingAvgScoreResponse = "sat_writing_avg_score"
@@ -33,5 +34,9 @@ class NetworkConstants {
         const val stateResponse = "state_code"
         const val latitudeResponse = "latitude"
         const val longitudeResponse = "longitude"
+
+        //Error Messages
+        const val errorNoInternet = "Device without internet connection, please verify internet connection and try again"
+        const val errorRepository = "Error in the NYC Open Data Repository, please try again, if error persist contact to your application Manager"
     }
 }

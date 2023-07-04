@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="RegularTextStyle" parent="TextAppearance.AppCompat">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/regular_text_size</item>
+        <item name="android:breakStrategy">simple</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="singleLine">false</item>
+        <item name="paddingEnd">@dimen/margin_16dp</item>
+        <item name="maxLines">3</item>
+    </style>
+
+    <style name="headerTextStyle" parent="TextAppearance.AppCompat">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/header_text_size</item>
+    </style>
+</resources>

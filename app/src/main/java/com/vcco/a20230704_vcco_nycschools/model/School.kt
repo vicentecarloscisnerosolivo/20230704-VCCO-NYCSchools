@@ -7,7 +7,9 @@ import com.google.gson.annotations.SerializedName
 import com.vcco.a20230704_vcco_nycschools.utils.database.DatabaseConstants
 import com.vcco.a20230704_vcco_nycschools.utils.database.NetworkConstants
 import java.lang.annotation.ElementType
-
+/**
+ * Create School Model, using same object for database and Network Call
+ */
 @Entity(tableName = DatabaseConstants.schoolTable)
 data class School(
     @SerializedName(NetworkConstants.dbnResponse)
