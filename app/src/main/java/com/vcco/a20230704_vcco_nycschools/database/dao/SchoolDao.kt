@@ -36,6 +36,7 @@ interface SchoolDao : DAO<School> {
     /**
      * Get the Data for a specific School searched by id
      * @param id
+     * @return School
      */
     @Query("SELECT * FROM TSchool WHERE dbn = :id")
     suspend fun getSchool(id: String): School
@@ -43,11 +44,13 @@ interface SchoolDao : DAO<School> {
     /**
      * Sync the data retrieve from the web service, delete the current Schools and update with new info
      * @param schools
+     * @return SchoolsList
      */
     @Transaction
-    suspend fun updateSchools(schools: List<School>) {
+    suspend fun updateSchools(schools: List<School>):List<School>? {
         deleteSchools()
         insert(schools)
+        return getSchoolsByID()
     }
 
     /**

@@ -17,13 +17,13 @@ import javax.inject.Inject
 class SchoolViewModel @Inject constructor(private val repository: NYCSchoolsRepository) :
     ViewModel() {
     //schools
-    private val _schoolsList = MutableLiveData<List<School>?>()
-
     /**
      * LiveData for List of the Schools Listed in the NYC Open Data
      */
-    val schoolsList: LiveData<List<School>?> = _schoolsList
+    val schoolsList: LiveData<List<School>?> = repository.schoolList
 
+    //network Error
+    val errorMessage: LiveData<String> = repository.errorMessage
     //navigation
 
     private val _navigationToSchoolDetail = MutableLiveData<String?>()
@@ -40,7 +40,7 @@ class SchoolViewModel @Inject constructor(private val repository: NYCSchoolsRepo
         //launch the coroutine for the suspend fun
         viewModelScope.launch {
             //Use postValue to avoid problem in the UI Thread
-            _schoolsList.postValue(repository.getSchools())
+            repository.getSchools()
         }
     }
 

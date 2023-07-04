@@ -1,10 +1,14 @@
 package com.vcco.a20230704_vcco_nycschools.di.module
 
+import android.content.Context
+import android.net.ConnectivityManager
 import com.vcco.a20230704_vcco_nycschools.BuildConfig
 import com.vcco.a20230704_vcco_nycschools.network.api.NYCSchoolsAPI
+import com.vcco.a20230704_vcco_nycschools.network.manager.NetworkManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -47,7 +51,7 @@ class NetworkModule {
     }
 
     /**
-     * Provide unique Api Service to be called on Api Implementation
+     * Provide unique instance Api Service to be called on Api Implementation
      * @param retrofit *Injected*
      * @return SchoolAPiService *Unique instance*
      */
@@ -56,4 +60,21 @@ class NetworkModule {
     fun provideSchoolApiService(retrofit: Retrofit) =
         retrofit.create(NYCSchoolsAPI::class.java)
 
+    /**
+     * Provide unique instance of Network Manager
+     */
+    @Provides
+    @Singleton
+    fun provideConnectivityManager(@ApplicationContext context: Context) =
+        context.getSystemService(
+            Context.CONNECTIVITY_SERVICE
+        ) as ConnectivityManager
+
+    /**
+     * Provide unique instance of Custom Network Manager for the app
+     */
+    @Provides
+    @Singleton
+    fun provideNetworkManager(connectivityManager: ConnectivityManager) =
+        NetworkManager(connectivityManager)
 }

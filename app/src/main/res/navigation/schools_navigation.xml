@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/schoolsFragment"
         android:name="com.vcco.a20230704_vcco_nycschools.ui.schools.SchoolFragment"
-        android:label="fragment_schoolsragment"
+        android:label="@string/fragment_schools_tittle"
         tools:layout="@layout/fragment_schools">
         <action
             android:id="@+id/action_schoolsragment_to_schoolDetailFragment"
@@ -17,7 +17,7 @@
     <fragment
         android:id="@+id/schoolDetailFragment"
         android:name="com.vcco.a20230704_vcco_nycschools.ui.schooldetail.SchoolDetailFragment"
-        android:label="fragment_school_detail"
+        android:label="@string/fragment_school_detail_tittle"
         tools:layout="@layout/fragment_school_detail">
         <argument
             android:name="id"

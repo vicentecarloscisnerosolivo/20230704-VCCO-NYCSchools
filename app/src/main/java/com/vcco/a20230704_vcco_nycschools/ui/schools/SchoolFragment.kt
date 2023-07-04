@@ -45,6 +45,8 @@ class SchoolFragment : Fragment() {
         requestSchools()
         //addObservers
         addObservers()
+        //addClickListener
+        addClickListener()
     }
 
     /**
@@ -75,14 +77,6 @@ class SchoolFragment : Fragment() {
             viewModel.onSchoolClicked(it)
         })
         binding.listSchools.adapter = schoolsAdapter
-        setRecyclerViewListener()
-    }
-
-    /**
-     * init recyclerviewListener and set scroll listener
-     */
-    private fun setRecyclerViewListener(){
-
     }
 
     /**
@@ -103,6 +97,16 @@ class SchoolFragment : Fragment() {
                 binding.pogressBarSchools.visibility = View.GONE
             }
         }
+        //Observer if there is any error in the repository
+        viewModel.errorMessage.observe(viewLifecycleOwner) {error->
+            error?.let {
+                binding.pogressBarSchools.visibility = View.GONE
+                binding.listSchools.visibility = View.GONE
+                binding.errorMessageSchools.visibility = View.VISIBLE
+                binding.errorMessageSchools.text = error
+                binding.errorMessageSchoolsButton.visibility = View.VISIBLE
+            }
+        }
         //observe when user click a school to see details
         viewModel.navigationToSchoolDetail.observe(viewLifecycleOwner) { schoolId ->
             schoolId?.let {
@@ -115,6 +119,19 @@ class SchoolFragment : Fragment() {
                 //Reset value
                 viewModel.onSchoolDetailNavigated()
             }
+        }
+    }
+
+    /**
+     * Click listener for retry fetch data, only will be visible when is a error
+     */
+    private fun addClickListener(){
+        binding.errorMessageSchoolsButton.setOnClickListener{
+            requestSchools()
+            binding.pogressBarSchools.visibility = View.VISIBLE
+            binding.listSchools.visibility = View.VISIBLE
+            binding.errorMessageSchools.visibility = View.GONE
+            binding.errorMessageSchoolsButton.visibility = View.GONE
         }
     }
 }

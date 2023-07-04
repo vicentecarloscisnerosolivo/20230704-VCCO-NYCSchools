@@ -6,6 +6,8 @@ class DatabaseConstants {
         const val dbName = "school_database"
         const val dbnColumn = "dbn"
         const val schoolNameColumn = "school_name"
+        const val NA = "No Applicable"
+        const val NI = "No Info"
 
         //Table SchoolSATScores
         const val schoolSAtScoresTable = "TSchoolSAtScores"

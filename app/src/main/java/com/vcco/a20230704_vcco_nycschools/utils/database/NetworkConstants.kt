@@ -34,5 +34,9 @@ class NetworkConstants {
         const val stateResponse = "state_code"
         const val latitudeResponse = "latitude"
         const val longitudeResponse = "longitude"
+
+        //Error Messages
+        const val errorNoInternet = "Device without internet connection, please verify internet connection and try again"
+        const val errorRepository = "Error in the NYC Open Data Repository, please try again, if error persist contact to your application Manager"
     }
 }
