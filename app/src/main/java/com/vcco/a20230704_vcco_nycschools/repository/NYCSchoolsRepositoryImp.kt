@@ -31,9 +31,9 @@ class NYCSchoolsRepositoryImp @Inject constructor(
         return result
     }
 
-    override suspend fun getSchoolSatScore(id: String): SchoolSATScores {
-        TODO("Not yet implemented")
-    }
+    override suspend fun getSchoolSDetail(id: String) = schoolDao.getSchool(id)
+
+    override suspend fun getSchoolSatScore(id: String) = scoresDao.getSchoolScores(id)
 
     /**
      * Use to sync the School data from the Web Service of NYC Open Data

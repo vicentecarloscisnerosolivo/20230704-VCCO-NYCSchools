@@ -11,8 +11,14 @@ interface NYCSchoolsRepository {
     suspend fun getSchools(): List<School>?
 
     /**
-     * Use this method to get the score of the select school
+     * Use this method to get the detail of the select school
      * @return Detail of the school
+     */
+    suspend fun getSchoolSDetail(id: String): School
+
+    /**
+     * Use this method to get the score of the select school
+     * @return Data
      */
     suspend fun getSchoolSatScore(id: String): SchoolSATScores
 }

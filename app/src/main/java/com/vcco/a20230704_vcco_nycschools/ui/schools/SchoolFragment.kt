@@ -86,7 +86,7 @@ class SchoolFragment : Fragment() {
     }
 
     /**
-     * Make the request to live data to retrieve the list of the schools
+     * Make the request in viewModel to retrieve the list of the schools
      */
     private fun requestSchools() {
         viewModel.getSchoolsList()
