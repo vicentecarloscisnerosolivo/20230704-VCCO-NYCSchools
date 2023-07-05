@@ -1,5 +1,6 @@
 package com.vcco.a20230704_vcco_nycschools.repository
 
+import android.net.ConnectivityManager
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.vcco.a20230704_vcco_nycschools.database.dao.SchoolDao
 import com.vcco.a20230704_vcco_nycschools.database.dao.SchoolSATScoresDao
@@ -11,8 +12,10 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.Mockito
+import org.mockito.Mockito.doReturn
 import org.mockito.MockitoAnnotations
 
 @RunWith(AndroidJUnit4::class)
@@ -24,9 +27,12 @@ class RepositoryTest {
     lateinit var schoolSATScoresDao: SchoolSATScoresDao
 
     @Mock
-    lateinit var api: NYCSchoolsAPI
+    lateinit var connectivityManager: ConnectivityManager
 
     @Mock
+    lateinit var api: NYCSchoolsAPI
+
+    @InjectMocks
     lateinit var networkManager: NetworkManager
 
     lateinit var repository: NYCSchoolsRepository
@@ -36,7 +42,7 @@ class RepositoryTest {
 
     @Before
     fun setUp() {
-        MockitoAnnotations.initMocks(this)
+        MockitoAnnotations.openMocks(this)
         schoolDetail = School(
             "1d",
             "TestSchool",
@@ -83,19 +89,29 @@ class RepositoryTest {
                 null
             )
         )
+        networkManager = NetworkManager(connectivityManager)
         repository = NYCSchoolsRepositoryImp(api, schoolDao, schoolSATScoresDao, networkManager)
     }
 
     @Test
-    fun checkListOfSchools() {
+    fun checkSchoolDetail() {
         runBlocking {
-            Mockito.`when`(repository.getSchools()).thenAnswer {
-                repository.schoolList.postValue(schoolList)
-            }
-            var getSchools = repository.schoolList
-            repository.getSchools()
-            assert(getSchools.value != null)
-            assert(getSchools.value?.size == 2)
+            Mockito.`when`(repository.getSchoolSDetail(schoolDetail.dbn)).thenReturn(
+                schoolDetail
+            )
+            val response = repository.getSchoolSDetail(schoolDetail.dbn)
+            assert(response.dbn == schoolDetail.dbn)
+        }
+    }
+
+    @Test
+    fun checkSchoolSATScores() {
+        runBlocking {
+            Mockito.`when`(repository.getSchoolSatScore(schoolDetail.dbn)).thenReturn(
+                schoolScore
+            )
+            val response = repository.getSchoolSatScore(schoolDetail.dbn)
+            assert(response.dbn == schoolDetail.dbn)
         }
     }
 }
