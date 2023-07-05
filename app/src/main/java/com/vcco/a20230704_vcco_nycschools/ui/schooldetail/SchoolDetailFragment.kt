@@ -297,6 +297,13 @@ class SchoolDetailFragment : Fragment() {
                     }
                 }
             }
+            else{
+                Toast.makeText(
+                    requireContext(),
+                    PermissionsConstants.enableGPS,
+                    Toast.LENGTH_LONG
+                ).show()
+            }
         }
     }
 }

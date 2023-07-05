@@ -26,12 +26,19 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField 'String', 'BASE_URL', "\"https://data.cityofnewyork.us/resource/\""
+            //Put this key in location.properties file like this, is necessary for core functionality
+            // GOOGLE_MAPS_API_KEY=AIzaSyA6m2yZA4yKjG6mYe7cwFAbz1sGMmoUFYA
+
         }
         qa {
             buildConfigField 'String', 'BASE_URL', "\"https://data.cityofnewyork.us/resource/\""
+            //Put this key in location.properties file like this, is necessary for core functionality
+            // GOOGLE_MAPS_API_KEY=AIzaSyA6m2yZA4yKjG6mYe7cwFAbz1sGMmoUFYA
         }
         debug {
             buildConfigField 'String', 'BASE_URL', "\"https://data.cityofnewyork.us/resource/\""
+            //Put this key in location.properties file like this, is necessary for core functionality
+            // GOOGLE_MAPS_API_KEY=AIzaSyA6m2yZA4yKjG6mYe7cwFAbz1sGMmoUFYA
         }
     }
 
