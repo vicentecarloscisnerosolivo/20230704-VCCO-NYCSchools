@@ -12,6 +12,8 @@
     <string name="num_of_sat_test_takers">Number of SAT Test Takers:</string>
     <string name="location_header">Location</string>
     <string name="location_text">165-65 84th Avenue, Jamaica NY 11432 (40.716071, -73.799692)</string>
+    <string name="distance_text">You are: </string>
+    <string name="miles_away">%.2f miles away</string>
     <string name="contact_info_header">Contact Info</string>
     <string name="avg_score">450</string>
     <string name="school_number">(123)-551-4567</string>

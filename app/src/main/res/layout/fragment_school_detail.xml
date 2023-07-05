@@ -30,13 +30,13 @@
 
                 <ProgressBar
                     android:id="@+id/pogressBarSchoolDetail"
+                    style="?android:attr/progressBarStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="?android:attr/progressBarStyle"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/schoolName"
@@ -161,7 +161,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/locationTittle" />
 
-
                 <TextView
                     android:id="@+id/locationDescription"
                     style="@style/RegularTextStyle"
@@ -172,6 +171,24 @@
                     app:layout_constraintTop_toTopOf="@id/locationIcon"
                     tools:text="@string/location_text" />
 
+                <TextView
+                    android:id="@+id/distanceText"
+                    style="@style/RegularTextStyle"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    android:text="@string/distance_text"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="@id/locationIcon"
+                    app:layout_constraintTop_toBottomOf="@id/locationIcon" />
+
+                <TextView
+                    android:id="@+id/distance"
+                    style="@style/RegularTextStyle"
+                    android:layout_marginStart="@dimen/margin_16dp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toEndOf="@id/distanceText"
+                    app:layout_constraintTop_toTopOf="@id/distanceText"
+                    tools:text="@string/distance_text" />
+
                 <include
                     android:id="@+id/mapView"
                     layout="@layout/maps_view"
@@ -180,7 +197,7 @@
                     android:layout_margin="@dimen/margin_16dp"
                     android:visibility="@{(schoolDetail.latitude == null || schoolDetail.longitude == null)  ? View.GONE : View.VISIBLE}"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/locationDescription" />
+                    app:layout_constraintTop_toBottomOf="@id/distanceText" />
 
                 <TextView
                     android:id="@+id/infoTittle"
