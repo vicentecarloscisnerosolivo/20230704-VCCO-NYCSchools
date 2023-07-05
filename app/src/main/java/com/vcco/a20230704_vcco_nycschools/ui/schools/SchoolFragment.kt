@@ -76,6 +76,7 @@ class SchoolFragment : Fragment() {
         schoolsAdapter = SchoolAdapter(SchoolAdapterListener {
             viewModel.onSchoolClicked(it)
         })
+        //the idea was to do a pager but I had somre troubles
         binding.listSchools.adapter = schoolsAdapter
     }
 
