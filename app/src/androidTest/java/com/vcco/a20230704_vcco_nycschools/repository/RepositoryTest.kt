@@ -1,6 +1,7 @@
 package com.vcco.a20230704_vcco_nycschools.repository
 
 import android.net.ConnectivityManager
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.vcco.a20230704_vcco_nycschools.database.dao.SchoolDao
 import com.vcco.a20230704_vcco_nycschools.database.dao.SchoolSATScoresDao
@@ -8,18 +9,24 @@ import com.vcco.a20230704_vcco_nycschools.model.School
 import com.vcco.a20230704_vcco_nycschools.model.SchoolSATScores
 import com.vcco.a20230704_vcco_nycschools.network.api.NYCSchoolsAPI
 import com.vcco.a20230704_vcco_nycschools.network.manager.NetworkManager
+import com.vcco.a20230704_vcco_nycschools.utils.database.NetworkConstants
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.mockito.BDDMockito.doReturn
 import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.Mockito
-import org.mockito.Mockito.doReturn
 import org.mockito.MockitoAnnotations
 
 @RunWith(AndroidJUnit4::class)
 class RepositoryTest {
+
+    @get:Rule
+    val instantTaskExecutorRule = InstantTaskExecutorRule()
+
     @Mock
     lateinit var schoolDao: SchoolDao
 
@@ -89,12 +96,11 @@ class RepositoryTest {
                 null
             )
         )
-        networkManager = NetworkManager(connectivityManager)
         repository = NYCSchoolsRepositoryImp(api, schoolDao, schoolSATScoresDao, networkManager)
     }
 
     @Test
-    fun checkSchoolDetail() {
+    fun getSchoolDetail() {
         runBlocking {
             Mockito.`when`(repository.getSchoolSDetail(schoolDetail.dbn)).thenReturn(
                 schoolDetail
@@ -105,13 +111,37 @@ class RepositoryTest {
     }
 
     @Test
-    fun checkSchoolSATScores() {
+    fun getSchoolSATScores() {
         runBlocking {
             Mockito.`when`(repository.getSchoolSatScore(schoolDetail.dbn)).thenReturn(
                 schoolScore
             )
             val response = repository.getSchoolSatScore(schoolDetail.dbn)
             assert(response.dbn == schoolDetail.dbn)
+        }
+    }
+
+    @Test
+    fun getSchoolList() {
+        runBlocking {
+            Mockito.`when`(schoolDao.getSchoolsByID()).thenReturn(
+                schoolList
+            )
+            repository.getSchools()
+            repository.schoolList.observeForever {
+                assert(it?.size == 2)
+            }
+        }
+    }
+
+    @Test
+    fun getNoInternetErrorMessage() {
+        runBlocking {
+            doReturn(null).`when`(connectivityManager).activeNetwork
+            repository.getSchools()
+            repository.errorMessage.observeForever {
+                assert(it == NetworkConstants.errorNoInternet)
+            }
         }
     }
 }
